@@ -1,25 +1,25 @@
-# OPBOT - Another python cogs based discord bot
+# OPBOT - Another Python cogs-based discord bot
 
 ## Overview
 
-The following is a python based bot designed to help the UNSW OPSOC discord sever generate engagement and allow for members to get additional infomation about the OP universe.
+The following is a python based bot designed to help the UNSW OPSOC discord sever generate engagement and allow for members to get additional information about the OP universe.
 
 ### Considerations
 
 When designing the bot the following was considered.
 
-- Able to be run through a always online server running docker
+- Able to be run through an always-online server running docker
 - Low maintenance
 - Low processing power and networking bandwidth
 
 ## Features
 
-- [x] Help page with upto date spec
+- [x] Help page with up-to-date spec
 - [x] Random image generator (inc data)
 - [x] Bot stats
-- [ ] RPG style character collector
+- [ ] RPG-style character collector
 - [ ] Search character feature
-- [x] Guess the charcter game
+- [x] Guess the character game
 - [x] User profile
 - [x] Auto reverification tagger
 - [x] Manual verification bypass
@@ -123,8 +123,7 @@ function onSubmit(e) {
 ```
 
 ## Maintaining functionality
-
-1. Generate python module requirements with
+Generate Python module requirements with
 
     ``` linix
     pipreqs ./ --force
