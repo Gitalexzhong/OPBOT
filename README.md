@@ -69,6 +69,59 @@ When designing the bot the following was considered.
 
 There is a comprehensive verification log with time stamps in the "admin.log" file, "rpgData.log" is a secondary log for user info.
 
+## Google app script plugin module
+
+To implement verification with google forms a webhook is used to read received messages. You can implement the code linked to a Google form here.
+
+- <https://script.google.com/>
+- The corresponding setting used should be:
+
+![alt text](DocImages/TriggerGS.png)
+
+```gs
+const POST_URL = {Webhook URL};
+
+function onSubmit(e) {
+  Utilities.sleep(30000);
+
+  const response = e.response.getItemResponses();
+  let items = [];
+  let username = "";
+
+  for (const responseAnswer of response) {
+    const question = responseAnswer.getItem().getTitle();
+    const answer = responseAnswer.getResponse();
+    let parts = []
+
+    try {
+      parts = answer.match(/[\s\S]{1,1024}/g) || [];
+    } catch (e) {
+      parts = answer;
+    }
+
+    for (const [index, part] of Object.entries(parts)) {
+
+      if (question == "Discord Tag (e.g. abcde#1234)") {
+        username = part;
+      }
+    }
+  }
+
+  const options = {
+    "method": "post",
+    "headers": {
+      "Content-Type": "application/json",
+    },
+    "payload": JSON.stringify({
+      "content": "Auth!verifyUserWebServer1.1 " + username
+    })
+  };
+
+  UrlFetchApp.fetch(POST_URL, options);
+};
+
+```
+
 ## Maintaining functionality
 
 1. Generate python module requirements with
