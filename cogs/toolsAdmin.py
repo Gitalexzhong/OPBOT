@@ -30,6 +30,10 @@ class Admin(commands.Cog):
                 member) == verifcationName), None)
 
             if user == None:
+                user = next((member for member in authChannel.members if str(
+                    member) == verifcationName[:2]), None)
+
+            if user == None:
                 reboundChannel = self.client.get_channel(
                     int(config['verification']['errorStateChannel']))
                 await reboundChannel.send(f"Manual verificiation required for ({verifcationName})\nUse < !verify @user > in the welcome channel")
