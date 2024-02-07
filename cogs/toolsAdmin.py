@@ -31,7 +31,7 @@ class Admin(commands.Cog):
 
             if user == None:
                 user = next((member for member in authChannel.members if str(
-                    member) == verifcationName[:2]), None)
+                    member) == verifcationName[:-2]), None)
 
             if user == None:
                 reboundChannel = self.client.get_channel(
